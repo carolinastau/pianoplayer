@@ -51,11 +51,12 @@ export default function Piano() {
   });
 
   return (
-    <div className="piano-wrapper">
-      <header className="piano-header">
-        <h1>Piano Player</h1>
-        <p>Click a key or use your keyboard to play.</p>
-      </header>
+    <div className="piano-cabinet">
+      <div className="cabinet-lid" aria-hidden="true">
+        <div className="cabinet-lid-gloss" />
+        <span className="cabinet-stamp">PIANO &middot; CLASSIC</span>
+      </div>
+      <div className="cabinet-felt" aria-hidden="true" />
 
       <div
         className="piano"
@@ -99,6 +100,7 @@ export default function Piano() {
           </button>
         ))}
       </div>
+      <div className="cabinet-apron" aria-hidden="true" />
     </div>
   );
 }

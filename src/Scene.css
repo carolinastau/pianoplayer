@@ -1,0 +1,556 @@
+/* ============================================================
+   Scene shell + day/tarde/noite tokens.
+   Each .scene--<mode> swaps the same set of CSS custom props,
+   so window, wall, floor, piano and key-press color all retheme
+   together. Transitions on color/background give the feel of
+   the ambient light shifting.
+   ============================================================ */
+
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  isolation: isolate;
+  font-family: inherit;
+  color: var(--text);
+  transition: background 700ms ease;
+  /* default = day */
+  --text: #3b2a18;
+
+  --wall: #e9d8c3;
+  --wall-top: #f7ead5;
+  --wall-glow: rgba(255, 230, 188, 0.55);
+  --wall-shadow: rgba(60, 35, 10, 0.18);
+
+  --floor-top: #c19470;
+  --floor-bottom: #8b6240;
+  --floor-plank: rgba(0, 0, 0, 0.18);
+
+  --frame-wood: #6e4a30;
+  --frame-wood-light: #9a6c44;
+  --frame-shadow: rgba(0, 0, 0, 0.45);
+  --sill: #8a5e3f;
+  --sill-light: #a87a55;
+
+  --pot: #b06a3a;
+  --pot-shadow: #6e3a18;
+  --leaves: #5a8a3a;
+  --leaves-light: #7eb050;
+
+  --piano-body-top: #1a1a1d;
+  --piano-body-bottom: #050507;
+  --piano-stamp: #d6b56a;
+  --piano-felt-top: #5a1d24;
+  --piano-felt-bottom: #3a0f15;
+  --piano-glow: rgba(255, 200, 130, 0);
+
+  --press-glow: #9bd2ff;
+  --press-glow-soft: rgba(155, 210, 255, 0.55);
+  --press-glow-black: #4d8fc4;
+
+  --switcher-bg: rgba(255, 252, 244, 0.5);
+  --switcher-border: rgba(60, 40, 20, 0.15);
+  --switcher-fg: #4a3823;
+  --switcher-hover: rgba(255, 255, 255, 0.6);
+  --switcher-active: #3a2a18;
+  --switcher-active-fg: #fff5e1;
+
+  /* landscape */
+  --sky-top: #6cb8ff;
+  --sky-bottom: #d6f1ff;
+  --sun-fill: #fff5cf;
+  --sun-glow-fill: rgba(255, 235, 170, 0.45);
+  --sun-cx: 600;
+  --sun-cy: 110;
+  --sun-r: 38;
+  --sun-glow-r: 78;
+  --hill-far: #6fa56b;
+  --hill-mid: #4a7e4f;
+  --tree-fill: #2f5a35;
+  --grass: #7eaf4a;
+  --cottage-body: #c98c5e;
+  --cottage-roof: #6e3b2c;
+  --cottage-window: #ffd97a;
+  --cottage-door: #4a2a1a;
+  --chimney: #6a3a2a;
+  --smoke: rgba(220, 220, 220, 0.7);
+  --cloud: rgba(255, 255, 255, 0.85);
+  --bird: #1a1a1a;
+  --bird-opacity: 0.7;
+  --star-opacity: 0;
+  --firefly-opacity: 0;
+  --fg-tree: #1f3a23;
+  --trunk: #4a2e1a;
+  --window-tint: rgba(255, 255, 255, 0);
+}
+
+/* ---------------- TARDE (golden hour) ---------------- */
+.scene--sunset {
+  --text: #fff0d9;
+  --wall: #c87a5a;
+  --wall-top: #ec9d6c;
+  --wall-glow: rgba(255, 160, 90, 0.55);
+  --wall-shadow: rgba(40, 10, 0, 0.35);
+
+  --floor-top: #7a4628;
+  --floor-bottom: #4a2818;
+  --floor-plank: rgba(0, 0, 0, 0.32);
+
+  --frame-wood: #3e2014;
+  --frame-wood-light: #5a3424;
+  --frame-shadow: rgba(0, 0, 0, 0.55);
+  --sill: #5a3424;
+  --sill-light: #7a4628;
+
+  --pot: #8a3a1a;
+  --pot-shadow: #4a1a08;
+  --leaves: #5a3a3a;
+  --leaves-light: #8a5a4a;
+
+  --piano-body-top: #1a0e10;
+  --piano-body-bottom: #050203;
+  --piano-stamp: #f0c878;
+  --piano-felt-top: #6a1a1a;
+  --piano-felt-bottom: #3a0808;
+  --piano-glow: rgba(255, 150, 90, 0.18);
+
+  --press-glow: #ffb56b;
+  --press-glow-soft: rgba(255, 181, 107, 0.6);
+  --press-glow-black: #b87038;
+
+  --switcher-bg: rgba(50, 22, 12, 0.55);
+  --switcher-border: rgba(255, 200, 160, 0.18);
+  --switcher-fg: #ffe0c0;
+  --switcher-hover: rgba(80, 40, 20, 0.6);
+  --switcher-active: #ffae6b;
+  --switcher-active-fg: #3a1a08;
+
+  --sky-top: #5a2a6a;
+  --sky-bottom: #ff8c5e;
+  --sun-fill: #ffae6b;
+  --sun-glow-fill: rgba(255, 130, 70, 0.55);
+  --sun-cx: 700;
+  --sun-cy: 230;
+  --sun-r: 48;
+  --sun-glow-r: 130;
+  --hill-far: #7a4a6a;
+  --hill-mid: #482840;
+  --tree-fill: #2a1834;
+  --grass: #5a3848;
+  --cottage-body: #6a3a3a;
+  --cottage-roof: #381820;
+  --cottage-window: #ffd97a;
+  --cottage-door: #1a0a08;
+  --chimney: #381820;
+  --smoke: rgba(255, 200, 160, 0.55);
+  --cloud: rgba(255, 200, 160, 0.55);
+  --bird: #2a1020;
+  --bird-opacity: 0.55;
+  --star-opacity: 0.25;
+  --firefly-opacity: 0;
+  --fg-tree: #1a0e1a;
+  --trunk: #2a1410;
+  --window-tint: rgba(255, 130, 60, 0.05);
+}
+
+/* ---------------- NOITE (night) ---------------- */
+.scene--night {
+  --text: #d8dcef;
+  --wall: #2a2e3e;
+  --wall-top: #393e54;
+  --wall-glow: rgba(120, 130, 200, 0.16);
+  --wall-shadow: rgba(0, 0, 0, 0.55);
+
+  --floor-top: #2a1f18;
+  --floor-bottom: #14100c;
+  --floor-plank: rgba(0, 0, 0, 0.5);
+
+  --frame-wood: #1a1410;
+  --frame-wood-light: #2c2218;
+  --frame-shadow: rgba(0, 0, 0, 0.7);
+  --sill: #221814;
+  --sill-light: #322218;
+
+  --pot: #3a2a1a;
+  --pot-shadow: #1a0e08;
+  --leaves: #1f3324;
+  --leaves-light: #2e4a32;
+
+  --piano-body-top: #0a0a10;
+  --piano-body-bottom: #020205;
+  --piano-stamp: #a89060;
+  --piano-felt-top: #2a0810;
+  --piano-felt-bottom: #14040a;
+  --piano-glow: rgba(255, 218, 165, 0.18);
+
+  --press-glow: #c8b3ff;
+  --press-glow-soft: rgba(200, 179, 255, 0.55);
+  --press-glow-black: #6e5fb0;
+
+  --switcher-bg: rgba(20, 22, 36, 0.6);
+  --switcher-border: rgba(200, 210, 255, 0.16);
+  --switcher-fg: #c4cae8;
+  --switcher-hover: rgba(50, 55, 80, 0.7);
+  --switcher-active: #c8b3ff;
+  --switcher-active-fg: #15132a;
+
+  --sky-top: #060c24;
+  --sky-bottom: #1e2850;
+  --sun-fill: #f4f1d8;
+  --sun-glow-fill: rgba(220, 220, 255, 0.32);
+  --sun-cx: 660;
+  --sun-cy: 110;
+  --sun-r: 32;
+  --sun-glow-r: 65;
+  --hill-far: #1a2848;
+  --hill-mid: #0c1628;
+  --tree-fill: #060a16;
+  --grass: #0a142a;
+  --cottage-body: #1a1820;
+  --cottage-roof: #0a0810;
+  --cottage-window: #ffd97a;
+  --cottage-door: #050505;
+  --chimney: #0a0810;
+  --smoke: rgba(180, 190, 230, 0.28);
+  --cloud: rgba(80, 90, 140, 0.4);
+  --bird: transparent;
+  --bird-opacity: 0;
+  --star-opacity: 1;
+  --firefly-opacity: 1;
+  --fg-tree: #050810;
+  --trunk: #100a08;
+  --window-tint: rgba(40, 50, 100, 0.08);
+}
+
+/* ============================================================
+   Layout: wall, window, floor, piano-stage
+   ============================================================ */
+
+.ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+  background:
+    radial-gradient(ellipse at 50% 35%, var(--wall-glow), transparent 55%);
+  transition: background 700ms ease;
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.wall {
+  position: absolute;
+  inset: 0 0 24% 0;
+  background:
+    linear-gradient(180deg, var(--wall-top) 0%, var(--wall) 75%, var(--wall-shadow) 100%);
+  transition: background 700ms ease;
+}
+.wall::before {
+  /* corner darkening / vignette */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.18) 100%);
+  pointer-events: none;
+}
+
+.floor {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 24%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 96px,
+      var(--floor-plank) 96px,
+      var(--floor-plank) 97px
+    ),
+    linear-gradient(180deg, var(--floor-top) 0%, var(--floor-bottom) 100%);
+  transition: background 700ms ease;
+  box-shadow: inset 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- window ---- */
+.window {
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  width: min(720px, 58vw);
+  height: 56%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.window-frame {
+  position: relative;
+  width: 100%;
+  height: 84%;
+  border: 14px solid var(--frame-wood);
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--frame-wood-light), var(--frame-wood));
+  box-shadow:
+    0 18px 40px var(--frame-shadow),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.35),
+    inset 0 0 16px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transition: border-color 700ms ease, box-shadow 700ms ease;
+}
+
+.window-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* glass tint overlay for sunset/night warmth */
+.window-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--window-tint);
+  transition: background 700ms ease;
+  mix-blend-mode: overlay;
+}
+
+.mullion {
+  position: absolute;
+  background: linear-gradient(180deg, var(--frame-wood-light), var(--frame-wood));
+  z-index: 3;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 0 8px rgba(0, 0, 0, 0.25);
+}
+.mullion--v {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  transform: translateX(-50%);
+}
+.mullion--h {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 8px;
+  transform: translateY(-50%);
+}
+
+.window-sill {
+  position: absolute;
+  top: 84%;
+  left: -4%;
+  right: -4%;
+  height: 28px;
+  background: linear-gradient(180deg, var(--sill-light), var(--sill));
+  border-radius: 3px;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 4;
+  transition: background 700ms ease;
+}
+
+/* potted plants on sill */
+.plant {
+  position: absolute;
+  bottom: 100%;
+  width: 56px;
+  height: 70px;
+  pointer-events: none;
+}
+.plant--left {
+  left: 8%;
+}
+.plant--right {
+  right: 8%;
+}
+.pot {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 24px;
+  background: linear-gradient(180deg, var(--pot), var(--pot-shadow));
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  transition: background 700ms ease;
+}
+.leaves {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 56px;
+  background:
+    radial-gradient(ellipse 22px 30px at 30% 60%, var(--leaves) 0%, transparent 70%),
+    radial-gradient(ellipse 24px 28px at 70% 55%, var(--leaves-light) 0%, transparent 72%),
+    radial-gradient(ellipse 18px 22px at 50% 30%, var(--leaves) 0%, transparent 70%);
+  filter: blur(0.4px);
+  transition: background 700ms ease;
+}
+
+/* ============================================================
+   SVG landscape - colors come from CSS vars on the scene root
+   ============================================================ */
+
+.window-view .sky {
+  fill: var(--sky-bottom);
+}
+/* gradient sky via a layered rect */
+.window-view::after {
+  content: "";
+}
+
+.sky-stop-top { stop-color: var(--sky-top); }
+.sky-stop-bottom { stop-color: var(--sky-bottom); }
+
+.window-view .stars circle {
+  fill: #fff8d6;
+  opacity: var(--star-opacity);
+  transition: opacity 700ms ease;
+}
+
+.window-view .sun {
+  fill: var(--sun-fill);
+  cx: var(--sun-cx);
+  cy: var(--sun-cy);
+  r: var(--sun-r);
+  filter: drop-shadow(0 0 8px var(--sun-fill));
+  transition: fill 700ms ease, cx 700ms ease, cy 700ms ease, r 700ms ease;
+}
+.window-view .sun-glow {
+  fill: var(--sun-glow-fill);
+  cx: var(--sun-cx);
+  cy: var(--sun-cy);
+  r: var(--sun-glow-r);
+  transition: fill 700ms ease, cx 700ms ease, cy 700ms ease, r 700ms ease;
+}
+
+.window-view .clouds ellipse { fill: var(--cloud); transition: fill 700ms ease; }
+.window-view .hill-far { fill: var(--hill-far); transition: fill 700ms ease; }
+.window-view .hill-mid { fill: var(--hill-mid); transition: fill 700ms ease; }
+.window-view .grass { fill: var(--grass); transition: fill 700ms ease; }
+.window-view .trees ellipse { fill: var(--tree-fill); transition: fill 700ms ease; }
+
+.window-view .cottage-body { fill: var(--cottage-body); transition: fill 700ms ease; }
+.window-view .cottage-roof { fill: var(--cottage-roof); transition: fill 700ms ease; }
+.window-view .cottage-window {
+  fill: var(--cottage-window);
+  transition: fill 700ms ease;
+  filter: drop-shadow(0 0 4px var(--cottage-window));
+}
+.window-view .cottage-door { fill: var(--cottage-door); transition: fill 700ms ease; }
+.window-view .chimney { fill: var(--chimney); transition: fill 700ms ease; }
+.window-view .smoke circle { fill: var(--smoke); transition: fill 700ms ease; }
+
+.window-view .fg-tree ellipse { fill: var(--fg-tree); transition: fill 700ms ease; }
+.window-view .fg-tree rect { fill: var(--trunk); transition: fill 700ms ease; }
+
+.window-view .birds path {
+  fill: none;
+  stroke: var(--bird);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: var(--bird-opacity);
+  transition: opacity 700ms ease, stroke 700ms ease;
+}
+
+.window-view .fireflies circle {
+  fill: #fff5b0;
+  opacity: var(--firefly-opacity);
+  filter: drop-shadow(0 0 4px #fff5b0);
+  transition: opacity 700ms ease;
+  animation: firefly 3s ease-in-out infinite;
+}
+.window-view .fireflies circle:nth-child(2) { animation-delay: 0.6s; }
+.window-view .fireflies circle:nth-child(3) { animation-delay: 1.2s; }
+.window-view .fireflies circle:nth-child(4) { animation-delay: 1.8s; }
+
+@keyframes firefly {
+  0%, 100% { opacity: calc(var(--firefly-opacity) * 0.3); }
+  50% { opacity: var(--firefly-opacity); }
+}
+
+/* smoke drift */
+.window-view .smoke circle {
+  animation: drift 5s ease-in-out infinite;
+}
+.window-view .smoke circle:nth-child(2) { animation-delay: 0.7s; }
+.window-view .smoke circle:nth-child(3) { animation-delay: 1.4s; }
+@keyframes drift {
+  0% { transform: translate(0, 0); opacity: 0.7; }
+  100% { transform: translate(8px, -10px); opacity: 0; }
+}
+
+/* ============================================================
+   Mode switcher
+   ============================================================ */
+
+.mode-switcher {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  gap: 4px;
+  background: var(--switcher-bg);
+  border: 1px solid var(--switcher-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 5px;
+  border-radius: 999px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  z-index: 20;
+  transition: background 500ms ease, border-color 500ms ease;
+}
+.mode-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--switcher-fg);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  transition: background 250ms ease, color 250ms ease, transform 120ms ease;
+}
+.mode-btn:hover { background: var(--switcher-hover); }
+.mode-btn:active { transform: scale(0.96); }
+.mode-btn.active {
+  background: var(--switcher-active);
+  color: var(--switcher-active-fg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* ============================================================
+   Piano stage
+   ============================================================ */
+
+.piano-stage {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  filter: drop-shadow(0 -4px 18px var(--piano-glow));
+  transition: filter 700ms ease;
+}
+
+@media (max-width: 900px) {
+  .scene { min-height: 540px; }
+  .window { width: 78vw; top: 5%; height: 48%; }
+  .piano-stage { bottom: 3%; }
+  .mode-switcher { top: 16px; right: 16px; }
+  .mode-btn { padding: 6px 12px; font-size: 12px; }
+}
