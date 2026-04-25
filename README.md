@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:5173 in your browser.
+Then open http://localhost:5273 in your browser.
 
 The first click/keypress unlocks audio (browsers require a user gesture
 before playing sound).
