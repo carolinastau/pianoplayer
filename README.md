@@ -1,36 +1,37 @@
 # Piano Player
 
-A simple interactive piano desktop app. Click the on-screen keys (or use the
-mapped keyboard keys) to play synthesized piano tones.
+An interactive piano you play in the browser. Click the on-screen keys (or
+use your keyboard) to play synthesized piano tones. Built with React + Vite,
+sound generated with the Web Audio API - no audio files required.
 
-## Features
+## Run locally
 
-- 2-octave piano (C4 - F5) with 11 white keys and 7 black keys
-- Click a key with the mouse to play it
-- Keyboard shortcuts shown on each key (e.g. `A` = C4, `S` = D4, `W` = C#4)
-- Tones synthesized at runtime - no external audio files required
-
-## Requirements
-
-- Python 3.9+
-- `numpy`
-- `pygame`
-- Tkinter (bundled with most Python distributions; on Debian/Ubuntu install
-  `python3-tk` if missing)
-
-## Install
+Requirements: Node.js 18+.
 
 ```bash
-pip install -r requirements.txt
+npm install
+npm run dev
 ```
 
-## Run
+Then open http://localhost:5173 in your browser.
+
+The first click/keypress unlocks audio (browsers require a user gesture
+before playing sound).
+
+## Production build
 
 ```bash
-python piano.py
+npm run build      # outputs static site to ./dist
+npm run preview    # serves the built site for a quick check
 ```
+
+The contents of `dist/` are static - you can drop them on GitHub Pages,
+Netlify, Vercel, or any static host.
 
 ## Keyboard map
+
+Lower octave (C4-B4): **A W S E D F T G Y H U J**
+Upper octave (C5-F5): **K O L P ; '**
 
 | Key | Note | | Key | Note |
 |-----|------|-|-----|------|
