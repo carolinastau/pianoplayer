@@ -26,11 +26,10 @@ export default function Piano() {
   }, []);
 
   useEffect(() => {
-    const byKey = new Map(NOTES.map((n) => [n.key, n]));
+    const byCode = new Map(NOTES.map((n) => [n.code, n]));
     const onKeyDown = (e) => {
       if (e.repeat) return;
-      const k = e.key.toLowerCase();
-      const note = byKey.get(k);
+      const note = byCode.get(e.code);
       if (note) {
         e.preventDefault();
         press(note);
